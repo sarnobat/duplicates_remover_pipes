@@ -4,9 +4,6 @@ import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.HashSet;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-
 import org.json.JSONArray;
 
 
@@ -18,7 +15,6 @@ public class Duff2Json {
 		while (br.ready()) {
 			String inputLine = br.readLine();
 			if (inputLine.matches(".*files in cluster.*")) {
-//				System.out.println(inputLine);
 				if (blockOfFiles.size() > 0) {
 					JSONArray a = new JSONArray();
 					for (String blockFile : blockOfFiles) {
