@@ -8,7 +8,11 @@ public class DuffExists {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+<<<<<<< HEAD
+		while (!br.ready()){
+=======
 		while (!br.ready()) {
+>>>>>>> 917a3d4b08800c8932d8aadd89c24624905b9ad2
 			Thread.sleep(500L);
 		}
 		while (br.ready()) {
