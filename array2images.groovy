@@ -45,7 +45,7 @@ public class Array2Images {
 	}
 
 	private static String toImagePath(String filePath) {
-		return getButtons(filePath)+ "<span>" + filePath + "</span><br>\n";
+		return "<span>" + getButtons(filePath) + filePath + "</span><br>\n";
 	}
 
 	private static String getButtons(String filePath) {
@@ -57,7 +57,7 @@ public class Array2Images {
 			System.err.println("Need to escape file paths 2");
 			return "";
 		}
-		return "<input type=button onclick='deleteFile(\"" + filePath +"\")' value='Delete' text='myText'>";
+		return "<input type=button onclick='deleteFile(\"" + filePath +"\"); this.parentElement.remove()' value='Delete' text='myText'>";
 	}
 
 	private static String toImageTags(List<String> filePaths) {
