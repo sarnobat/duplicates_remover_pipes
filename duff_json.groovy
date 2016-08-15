@@ -13,9 +13,11 @@ public class Duff2Json {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Collection<String> blockOfFiles = new HashSet<String>();
 		while (!br.ready()){
-			Thread.sleep(500L);
+			Thread.sleep(2500L);
+			System.err.println("Duff2Json - waiting");
 		}
 		while (br.ready()) {
+                        System.err.println("Duff2Json - processing");
 			String inputLine = br.readLine();
 			if (inputLine.matches(".*files in cluster.*") || inputLine.matches(".*bytes.*")) {
 				if (blockOfFiles.size() > 0) {

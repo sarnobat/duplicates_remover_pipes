@@ -18,12 +18,14 @@ public class Array2Images {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// Until we start receiving input, keep the process running
 		while (!br.ready()){
-			Thread.sleep(500L);
+			Thread.sleep(2500L);
+System.err.println("Array2Images - waiting");
 		}
 		for(String s : Files.readAllLines(Paths.get("./header.html"), java.nio.charset.Charset.defaultCharset())) {
 			System.out.println(s);
 		}
 		while (br.ready()) {
+System.err.println("Array2Images - processing");
 			String inputLine = br.readLine();
 			JsonArray a = jsonFromString(inputLine);
 			List<String> files = toCollection(a);
