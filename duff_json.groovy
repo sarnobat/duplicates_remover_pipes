@@ -11,10 +11,6 @@ public class Duff2Json {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-                while (!br.ready()) {
-                        Thread.sleep(500L);
-                }
 		Collection<String> blockOfFiles = new HashSet<String>();
 		while (!br.ready()){
 			Thread.sleep(500L);
