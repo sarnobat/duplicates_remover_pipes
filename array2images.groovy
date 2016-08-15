@@ -20,7 +20,7 @@ public class Array2Images {
 		while (!br.ready()){
 			Thread.sleep(500L);
 		}
-		for(String s : Files.readAllLines(Paths.get("./header.html"))) {
+		for(String s : Files.readAllLines(Paths.get("./header.html"), java.nio.charset.Charset.defaultCharset())) {
 			System.out.println(s);
 		}
 		while (br.ready()) {
