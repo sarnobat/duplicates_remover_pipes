@@ -11,10 +11,14 @@ public class Duff2Json {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+                while (!br.ready()) {
+                        Thread.sleep(500L);
+                }
 		Collection<String> blockOfFiles = new HashSet<String>();
 		while (br.ready()) {
 			String inputLine = br.readLine();
-			if (inputLine.matches(".*files in cluster.*")) {
+			if (inputLine.matches(".*files in cluster.*") || inputLine.matches(".*bytes.*")) {
 				if (blockOfFiles.size() > 0) {
 					JSONArray a = new JSONArray();
 					for (String blockFile : blockOfFiles) {
