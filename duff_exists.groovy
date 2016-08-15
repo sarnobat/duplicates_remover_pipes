@@ -14,7 +14,7 @@ public class DuffExists {
 				if (Paths.get(inputLine).toFile().exists()) {
 					System.out.println(inputLine);
 				} else {
-					System.err.println("Does not exist : " + inputLine);
+//					System.err.println("Does not exist : " + inputLine);
 				}
 			}
 			else {
