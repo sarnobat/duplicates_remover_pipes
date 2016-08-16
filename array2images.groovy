@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,6 +51,43 @@ System.err.println("Array2Images - processing");
 		return "<span>" + getButtons(filePath) + filePath + "</span><br>\n";
 	}
 
+              private static String httpLinkFor(String iAbsolutePath) {
+
+                                String prefix = "http://netgear.rohidekar.com:44452";
+                                return prefix + iAbsolutePath.replace("+", "%2B").replace("ã", "&atilde");//.replace("+", "%2B");
+                        }
+
+
+                        private static String convertToURLEscapingIllegalCharacters(String string){
+                            try {
+                                String decodedURL = URLDecoder.decode(string, "UTF-8");
+                                URL url = new URL(decodedURL);
+                                        URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(),
+                                                        url.getPath(), url.getQuery(), url.getRef());
+                                return uri.toASCIIString();
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                                return null;
+                            }
+                        }
+
+                        private static String thumbnailFor(Path iPath) {
+                        		String thePath = iPath.toString();
+                        		if (!(thePath.endsWith("mp4") || thePath.endsWith("mov"))) {
+                        			return iPath.toString();
+                        		}
+                        
+                                // This must be on a single line for Groovy
+                                String string = iPath.getParent().toFile().getAbsolutePath() + "/_thumbnails/" + iPath.getFileName().getFileName() + ".jpg";
+                                if (!Paths.get(string).toFile().exists()) {
+                                        if (string.endsWith("mp4")) {
+
+                                                System.err.println("Coagulate.FileLister.Mappings.thumbnailFor() - warning: non-existent thumbnail: " + string);
+                                        }
+                                }
+                                return string;
+                        }
+
 	private static String getButtons(String filePath) {
 		if (filePath.contains("'")) {
 			System.err.println("Need to escape file paths");
@@ -71,7 +109,8 @@ System.err.println("Array2Images - processing");
 	}
 
 	private static String toImageTag(String filePath) {
-		return "<span id='"+filePath.replaceAll("[^A-Za-z0-9_]", "")+"'><img src='" + BASE_URL + filePath+ "' height=200></span>\n";
+		String httpImageDisplay = httpLinkFor(thumbnailFor(Paths.get(filePath)));
+		return "<span id='"+filePath.replaceAll("[^A-Za-z0-9_]", "")+"'><img src='" + httpImageDisplay + "' height=200></span>\n";
 	}
 
 	private static List<String> toCollection(JsonArray a) {
