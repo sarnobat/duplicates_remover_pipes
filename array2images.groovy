@@ -18,16 +18,12 @@ public class Array2Images {
 	public static void main(String[] args) throws IOException, InterruptedException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// Until we start receiving input, keep the process running
-		while (!br.ready()){
-			Thread.sleep(2500L);
-System.err.println("Array2Images - waiting");
-		}
 		for(String s : Files.readAllLines(Paths.get("./header.html"), java.nio.charset.Charset.defaultCharset())) {
 			System.out.println(s);
 		}
-		while (br.ready()) {
+		String inputLine;
+		while ((inputLine = br.readLine()) != null) {
 System.err.println("Array2Images - processing");
-			String inputLine = br.readLine();
 			JsonArray a = jsonFromString(inputLine);
 			List<String> files = toCollection(a);
 			String imageTags = toImageTags(files);
