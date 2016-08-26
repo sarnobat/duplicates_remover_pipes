@@ -23,7 +23,7 @@ public class Array2Images {
 		}
 		String inputLine;
 		while ((inputLine = br.readLine()) != null) {
-System.err.println("Array2Images - processing");
+//System.err.println("Array2Images - processing");
 			JsonArray a = jsonFromString(inputLine);
 			List<String> files = toCollection(a);
 			String imageTags = toImageTags(files);

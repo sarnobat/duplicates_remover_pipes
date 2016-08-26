@@ -10,7 +10,7 @@ public class DuffExists {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String inputLine;
 		while ((inputLine = br.readLine()) != null) {
-System.err.println("DuffExists - processing");
+//System.err.println("DuffExists - processing");
 			//String inputLine = br.readLine();
 			if (inputLine.startsWith("/") || inputLine.startsWith("./")) {
 				if (Paths.get(inputLine).toFile().exists()) {

@@ -15,7 +15,7 @@ public class Duff2Json {
 
 		String inputLine;
 		while ((inputLine = br.readLine()) != null) {
-			System.err.println("Duff2Json - processing");
+//			System.err.println("Duff2Json - processing");
 			if (inputLine.matches(".*files in cluster.*") || inputLine.matches(".*bytes.*")) {
 				if (blockOfFiles.size() > 0) {
 					JSONArray a = new JSONArray();
