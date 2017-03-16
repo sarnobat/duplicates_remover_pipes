@@ -1,22 +1,30 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
-public class DuffExists {
+public class DuffSize {
 
 	public static void main(String[] args) throws IOException {
+		long minSizeBytes = 25000;
+		if (args.length > 0) {
+			minSizeBytes = Long.parseLong(args[0]);
+		}
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String inputLine;
 		while ((inputLine = br.readLine()) != null) {
-//System.err.println("DuffExists - processing");
-			//String inputLine = br.readLine();
 			if (inputLine.startsWith("/") || inputLine.startsWith("./")) {
-				if (Paths.get(inputLine).toFile().exists()) {
-					System.out.println(inputLine);
+				Path path = Paths.get(inputLine);
+//				File file = path.toFile();
+				if (Files.exists(path)) {
+					if (Files.size(path) > minSizeBytes) {
+						System.out.println(inputLine);
+					}
 				} else {
-//					System.err.println("Does not exist : " + inputLine);
 				}
 			}
 			else {
